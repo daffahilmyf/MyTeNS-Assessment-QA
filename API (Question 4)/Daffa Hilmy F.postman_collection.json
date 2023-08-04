@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "0ed3f754-c15e-41c1-ab0d-6f7825fe4133",
+		"name": "Daffa Hilmy F",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10932506"
+	},
+	"item": [
+		{
+			"name": "Simple Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"data\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"id\": { \"type\": \"integer\" },\r",
+							"        \"email\": { \"type\": \"string\"        },\r",
+							"        \"first_name\": {\"type\": \"string\" },\r",
+							"        \"last_name\": { \"type\": \"string\" },\r",
+							"        \"avatar\": { \"type\": \"string\"  }\r",
+							"      },\r",
+							"      \"required\": [  \"id\", \"email\", \"first_name\", \"last_name\", \"avatar\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"support\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"url\": { \"type\": \"string\"  },\r",
+							"        \"text\": { \"type\": \"string\" }\r",
+							"      },\r",
+							"      \"required\": [ \"url\", \"text\" ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [ \"data\", \"support\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"const expectedData = {\r",
+							"    \"data\": {\r",
+							"        \"id\": 2,\r",
+							"        \"email\": \"janet.weaver@reqres.in\",\r",
+							"        \"first_name\": \"Janet\",\r",
+							"        \"last_name\": \"Weaver\",\r",
+							"        \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\r",
+							"    },\r",
+							"    \"support\": {\r",
+							"        \"url\": \"https://reqres.in/#support-heading\",\r",
+							"        \"text\": \"To keep ReqRes free, contributions towards server costs are appreciated!\"\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"    const data = pm.response.json()\r",
+							"    pm.expect(tv4.validate(data, schema)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test('Data is correct', function () {\r",
+							"    const data = pm.response.json()\r",
+							"    pm.expect(data).to.be.eql(expectedData)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 100ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
